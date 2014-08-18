@@ -16,7 +16,7 @@ def main_menu
 		puts "2. List"
 		puts "3. Exit"	
 		case gets.chomp.to_i
-		when 1 then add_meu
+		when 1 then add_menu
 		when 2 then list_menu
 		when 3 then Exit	
 		end
@@ -29,10 +29,15 @@ def add_menu
 	case gets.chomp.to_i
 	when 1 then add_product
 	end
-	
 end
 
 def add_product
-	end
+	puts "Enter the name of the product:"
+	name = gets.chomp
+	puts "Enter the price of the product:"
+	price = gets.chomp
+	new_product = Product.new(:name => name, :price => price)
+	puts new_product.name + " at " + new_product.price + " has been added to the system"
+end
 
 main_menu
