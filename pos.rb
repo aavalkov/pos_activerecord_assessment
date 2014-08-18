@@ -19,11 +19,20 @@ def main_menu
 		when 1 then add_meu
 		when 2 then list_menu
 		when 3 then Exit	
+		end
 	end
 end
 
 def add_menu
+	puts "Choose an option:"
+	puts "1. Add a product"
+	case gets.chomp.to_i
+	when 1 then add_product
+	end
 	
 end
+
+def add_product
+	end
 
 main_menu
