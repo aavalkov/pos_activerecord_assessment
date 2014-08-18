@@ -37,7 +37,7 @@ def add_product
 	puts "Enter the price of the product:"
 	price = gets.chomp
 	new_product = Product.new(:name => name, :price => price)
-	puts new_product.name + " at " + new_product.price + " has been added to the system"
+	puts new_product.name + " has been added to the system"
 end
 
 main_menu
