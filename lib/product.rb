@@ -1,4 +1,4 @@
 class Product <ActiveRecord::Base
-	validates :name, :presence => true
+	validates :name, :price, :presence => true
 
 end
