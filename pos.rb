@@ -28,6 +28,7 @@ def add_menu
 	puts "1. Add a product"
 	case gets.chomp.to_i
 	when 1 then add_product
+	when 2 then add_login
 	end
 end
 
@@ -51,6 +52,18 @@ def add_product
 	else
 		puts "Invalid Entry"
 		product.errors.full_messages.each { |message| puts message }
+	end
+end
+
+def add_login
+	puts "Enter your login id name"
+	new_login = Login.new({:name => gets.chomp})
+	new_login.save
+	if new_login.save
+		puts new_login.name + " has been added as a login id."
+	else
+		puts "Invalid Login"
+		login.errors.full_messages.each { |message| puts message }
 	end
 end
 
