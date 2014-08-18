@@ -44,7 +44,7 @@ def add_product
 	name = gets.chomp
 	puts "Enter the price of the product:"
 	price = gets.chomp
-	new_product = Product.new(:name => name, :price => price)
+	new_product = Product.new({:name => name, :price => price})
 	new_product.save
 	puts new_product.name + " has been added to the system"
 end
