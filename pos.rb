@@ -18,7 +18,7 @@ def main_menu
 		case gets.chomp.to_i
 		when 1 then add_menu
 		when 2 then list_menu
-		when 3 then Exit	
+		when 3 then exit	
 		end
 	end
 end
@@ -46,7 +46,12 @@ def add_product
 	price = gets.chomp
 	new_product = Product.new({:name => name, :price => price})
 	new_product.save
-	puts new_product.name + " has been added to the system"
+	if new_product.save
+		puts new_product.name + " has been added to the system"
+	else
+		puts "Invalid Entry"
+		product.errors.full_messages.each { |message| puts message }
+	end
 end
 
 def list_products
