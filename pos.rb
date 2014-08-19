@@ -26,6 +26,7 @@ end
 def add_menu
 	puts "Choose an option:"
 	puts "1. Add a product"
+	puts "2. Add login id"
 	case gets.chomp.to_i
 	when 1 then add_product
 	when 2 then add_login
@@ -35,8 +36,10 @@ end
 def list_menu
 	puts "Choose and option:"
 	puts "1. List products"
+	puts "2. List all login names"
 	case gets.chomp.to_i
 	when 1 then list_products
+	when 2 then list_login
 	end
 end
 
@@ -71,6 +74,13 @@ def list_products
 	puts "All Products:"
 	products = Product.all.each_with_index do |product, index|
 		puts (index+1).to_s + ". " + product.name + " $" + product.price.to_s
+	end
+end
+
+def list_login
+	puts "All Login Id's"
+	logins = Login.all.each_with_index do |login, index|
+		puts (index +1).to_s + ". " + login.name
 	end
 end
 
