@@ -45,6 +45,7 @@ def list_menu
 	when 1 then list_products
 	when 2 then list_login
 	when 3 then list_items_by_employee
+	when 4 then list_employee_by_item
 	end
 end
 
@@ -115,6 +116,16 @@ def list_items_by_employee
 	puts current_login.name + " has sold:"
 	current_login.products.each_with_index do |item, index|
 		puts (index +1).to_s + ". " + item.name
+	end
+end
+
+def list_employee_by_item
+	puts "Enter the number of the product:"
+	list_products
+	current_product = Product.all[(gets.chomp.to_i)-1]
+	current_product.logins.uniq.each_with_index do |login, index|
+		puts (index +1).to_s + ". " + login.name
+
 	end
 end
 
