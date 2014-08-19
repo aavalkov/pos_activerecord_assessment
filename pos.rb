@@ -14,11 +14,13 @@ def main_menu
 		puts"Choose an option:"
 		puts "1. Add"
 		puts "2. List"
-		puts "3. Exit"	
+		puts "3. Make a sale"
+		puts "4. Exit"	
 		case gets.chomp.to_i
 		when 1 then add_menu
 		when 2 then list_menu
-		when 3 then exit	
+		when 3 then sale
+		when 4 then exit	
 		end
 	end
 end
@@ -40,6 +42,25 @@ def list_menu
 	case gets.chomp.to_i
 	when 1 then list_products
 	when 2 then list_login
+	end
+end
+
+def sale
+	puts "Enter your number to log in:"
+	list_login
+	current_login = Login.all[(gets.chomp.to_i) - 1]
+	loop do
+		puts "Enter the number of the item being sold"
+		list_products
+		current_item = Product.all[(gets.chomp.to_i) -1]
+		current_login.products << current_item
+		puts current_item.name + " added!"
+		puts "Press 1 to add another item"
+		puts "Press 2 to return to the main menu"
+		case gets.chomp.to_i
+		when 2 then
+			main_menu
+		end
 	end
 end
 
