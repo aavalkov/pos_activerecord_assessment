@@ -6,4 +6,6 @@ describe Login do
 		login.save
 		expect(login.save).to eq false
 	end
+
+	it {should have_and_belong_to_many :products}
 end
