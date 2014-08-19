@@ -125,7 +125,6 @@ def list_employee_by_item
 	current_product = Product.all[(gets.chomp.to_i)-1]
 	current_product.logins.uniq.each_with_index do |login, index|
 		puts (index +1).to_s + ". " + login.name
-
 	end
 end
 

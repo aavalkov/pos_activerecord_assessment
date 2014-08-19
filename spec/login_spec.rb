@@ -8,4 +8,9 @@ describe Login do
 	end
 
 	it {should have_and_belong_to_many :products}
+
+	it 'converts login name to uppercase' do
+		login = Login.create(:name => "aav")
+		expect(login.name).to eq "AAV"
+	end
 end
