@@ -39,9 +39,12 @@ def list_menu
 	puts "Choose and option:"
 	puts "1. List products"
 	puts "2. List all login names"
+	puts "3. View all items that one employee has sold"
+	puts "4. View all employees that have sold a single item"
 	case gets.chomp.to_i
 	when 1 then list_products
 	when 2 then list_login
+	when 3 then list_items_by_employee
 	end
 end
 
@@ -102,6 +105,16 @@ def list_login
 	puts "All Login Id's"
 	logins = Login.all.each_with_index do |login, index|
 		puts (index +1).to_s + ". " + login.name
+	end
+end
+
+def list_items_by_employee
+	puts "Enter the number of the employee:"
+	list_login
+	current_login = Login.all[(gets.chomp.to_i) - 1]
+	puts current_login.name + " has sold:"
+	current_login.products.each_with_index do |item, index|
+		puts (index +1).to_s + ". " + item.name
 	end
 end
 
