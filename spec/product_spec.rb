@@ -11,4 +11,6 @@ describe Product do
 		expect(product.save).to eq true
 	end
 
+	it {should have_and_belong_to_many :logins}
+
 end

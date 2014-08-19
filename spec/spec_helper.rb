@@ -10,7 +10,6 @@ ActiveRecord::Base.establish_connection(test_configuration)
 RSpec.configure do |config|
   config.before(:each) do
     Product.all.each { |product| product.destroy }
-    Sale.all.each { |sale| sale.destroy }
     Login.all.each { |login| login.destroy }
   end
 end
