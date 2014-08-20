@@ -15,12 +15,14 @@ def main_menu
 		puts "1. Add"
 		puts "2. List"
 		puts "3. Make a sale"
-		puts "4. Exit"	
+		puts "4. Mark an item as 'out of stock'"
+		puts "5. Exit"	
 		case gets.chomp.to_i
 		when 1 then add_menu
 		when 2 then list_menu
 		when 3 then sale
-		when 4 then exit	
+		when 4 then out_of_stock
+		when 5 then exit	
 		end
 	end
 end
@@ -135,6 +137,14 @@ def list_in_stock
 	products = Product.in_stock.each_with_index do |product, index|
 		puts (index +1).to_s + ". " + product.name
 	end
+end
+
+def out_of_stock
+	puts "Enter the number of the product"
+	list_products
+	choice = Product.all[(gets.chomp.to_i)-1]
+	product = Product.find_by(:id => choice.id)
+	product.update(:in_stock => false)
 end
 
 
