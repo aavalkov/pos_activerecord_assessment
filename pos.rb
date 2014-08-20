@@ -208,4 +208,13 @@ def delete_product
 	puts "Product deleted"
 end
 
+def delete_login
+	puts "Enter the number of the login"
+	list_login
+	choice = Login.all[(gets.chomp.to_i)-1]
+	login = Login.find_by(:id => choice.id)
+	login.destroy
+	puts "Login deleted"
+end
+
 main_menu
