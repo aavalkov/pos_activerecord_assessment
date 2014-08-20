@@ -25,6 +25,7 @@ def main_menu
 		when 3 then sale
 		when 4 then out_of_stock
 		when 5 then edit_menu
+		when 6 then delete_menu
 		when 7 then exit	
 		end
 	end
@@ -59,10 +60,20 @@ end
 def edit_menu
 	puts 'Choose an option:'
 	puts "1. Edit Products"
-	puts "2. Edit logins"
+	puts "2. Edit Logins"
 	case gets.chomp.to_i
 	when 1 then edit_product
 	when 2 then edit_login
+	end
+end
+
+def delete_menu
+	puts 'Choose an option:'
+	puts "1. Delete Products"
+	puts "2. Delete Logins"
+	case gets.chomp.to_i
+	when 1 then delete_product
+	when 2 then delete_login
 	end
 end
 
@@ -188,5 +199,13 @@ def edit_login
 	login.update(:name => gets.chomp)
 end
 
+def delete_product
+	puts "Enter the number of the product"
+	list_products
+	choice = Product.all[(gets.chomp.to_i)-1]
+	product = Product.find_by(:id => choice.id)
+	product.destroy
+	puts "Product deleted"
+end
 
 main_menu
