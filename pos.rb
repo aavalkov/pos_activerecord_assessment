@@ -179,5 +179,14 @@ def edit_product
 	end
 end
 
+def edit_login
+	puts "Enter the number of the login"
+	list_login
+	choice = Login.all[(gets.chomp.to_i)-1]
+	login = Login.find_by(:id => choice.id)
+	puts "Enter the new name"
+	login.update(:name => gets.chomp)
+end
+
 
 main_menu
