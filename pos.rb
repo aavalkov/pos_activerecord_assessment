@@ -41,11 +41,13 @@ def list_menu
 	puts "2. List all login names"
 	puts "3. View all items that one employee has sold"
 	puts "4. View all employees that have sold a single item"
+	puts "5. View all in stock items"
 	case gets.chomp.to_i
 	when 1 then list_products
 	when 2 then list_login
 	when 3 then list_items_by_employee
 	when 4 then list_employee_by_item
+	when 5 then list_in_stock
 	end
 end
 
@@ -73,7 +75,7 @@ def add_product
 	name = gets.chomp
 	puts "Enter the price of the product:"
 	price = gets.chomp
-	new_product = Product.new({:name => name, :price => price})
+	new_product = Product.new({:name => name, :price => price, :in_stock => true})
 	new_product.save
 	if new_product.save
 		puts new_product.name + " has been added to the system"
@@ -125,6 +127,13 @@ def list_employee_by_item
 	current_product = Product.all[(gets.chomp.to_i)-1]
 	current_product.logins.uniq.each_with_index do |login, index|
 		puts (index +1).to_s + ". " + login.name
+	end
+end
+
+def list_in_stock
+	puts "All in stock items:"
+	products = Product.in_stock.each_with_index do |product, index|
+		puts (index +1).to_s + ". " + product.name
 	end
 end
 
