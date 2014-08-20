@@ -16,13 +16,16 @@ def main_menu
 		puts "2. List"
 		puts "3. Make a sale"
 		puts "4. Mark an item as 'out of stock'"
-		puts "5. Exit"	
+		puts "5. Edit"
+		puts "6. Delete"
+		puts "7. Exit"	
 		case gets.chomp.to_i
 		when 1 then add_menu
 		when 2 then list_menu
 		when 3 then sale
 		when 4 then out_of_stock
-		when 5 then exit	
+		when 5 then edit_menu
+		when 7 then exit	
 		end
 	end
 end
@@ -38,7 +41,7 @@ def add_menu
 end
 
 def list_menu
-	puts "Choose and option:"
+	puts "Choose an option:"
 	puts "1. List products"
 	puts "2. List all login names"
 	puts "3. View all items that one employee has sold"
@@ -50,6 +53,16 @@ def list_menu
 	when 3 then list_items_by_employee
 	when 4 then list_employee_by_item
 	when 5 then list_in_stock
+	end
+end
+
+def edit_menu
+	puts 'Choose an option:'
+	puts "1. Edit Products"
+	puts "2. Edit logins"
+	case gets.chomp.to_i
+	when 1 then edit_product
+	when 2 then edit_login
 	end
 end
 
@@ -145,6 +158,25 @@ def out_of_stock
 	choice = Product.all[(gets.chomp.to_i)-1]
 	product = Product.find_by(:id => choice.id)
 	product.update(:in_stock => false)
+end
+
+def edit_product
+	puts "Enter the number of the product"
+	list_products
+	choice = Product.all[(gets.chomp.to_i)-1]
+	puts "Enter a choice"
+	puts "1. Edit name"
+	puts "2. Edit price"
+	case gets.chomp.to_i
+	when 1
+		product = Product.find_by(:id => choice.id)
+		puts "Enter the new name"
+		product.update(:name => gets.chomp)
+	when 2
+		product = Product.find_by(:id => choice.id)
+		puts "Enter the new price"
+		product.update(:price => gets.chomp)
+	end
 end
 
 
